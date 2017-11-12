@@ -1,0 +1,8 @@
+name: EpicGuild
+main: cc.zoyn.epicguild.EpicGuild
+version: 0.0.1
+author: Zoyn
+commands:
+  epicguild:
+    alias: [ep,guild,gh,bp]
+    description: EpicGuild's Main Command
