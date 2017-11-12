@@ -1,6 +1,8 @@
 package cc.zoyn.epicguild.command;
 
 import cc.zoyn.epicguild.command.subcommand.CreateCommand;
+import cc.zoyn.epicguild.command.subcommand.ReloadCommand;
+import cc.zoyn.epicguild.manager.ConfigManager;
 import cc.zoyn.epicguild.util.SubCommand;
 import com.google.common.collect.Maps;
 import org.bukkit.Bukkit;
@@ -8,9 +10,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
+import java.util.Collections;
 import java.util.Map;
 
 /**
+ * 指令管理器
+ *
  * @author Zoyn
  * @since 2017-11-12
  */
@@ -23,6 +28,7 @@ public class CommandManager implements CommandExecutor, ICommandManager {
      */
     public CommandManager() {
         registerCommand("create", new CreateCommand());
+        registerCommand("reload", new ReloadCommand());
     }
 
     @Override
@@ -43,10 +49,12 @@ public class CommandManager implements CommandExecutor, ICommandManager {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (args.length == 0) {
+            ConfigManager.getStringListByDefault("CommandMessage.Help", Collections.singletonList("&c帮助丢失!"), true)
+                    .forEach(sender::sendMessage);
             return true;
         }
         if (!commandMap.containsKey(args[0])) {
-            sender.sendMessage("§c未知命令!");
+            sender.sendMessage(ConfigManager.getStringByDefault("CommandMessage.UnknownCommand", "&c未知命令!", true));
             return true;
         }
         // args[0] ---> SubCommand

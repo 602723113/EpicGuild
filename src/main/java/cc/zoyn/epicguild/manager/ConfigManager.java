@@ -1,7 +1,11 @@
 package cc.zoyn.epicguild.manager;
 
 import cc.zoyn.epicguild.EpicGuild;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Be used for manage config
@@ -27,11 +31,55 @@ public class ConfigManager {
         return defaultValue;
     }
 
-    public static String getStringByDefault(String key, String defaultValue) {
-        if (config.contains(key) && config.isString(key)) {
-            return config.getString(key);
+    /**
+     * 取config内的StringList
+     *
+     * @param key          键名
+     * @param defaultValue 默认值
+     * @param translate    是否转换颜色字符代码
+     * @return {@link List<String>}
+     */
+    public static List<String> getStringListByDefault(String key, List<String> defaultValue, boolean translate) {
+        if (config.contains(key) && config.isList(key) && !config.getList(key).isEmpty()) {
+            if (translate) {
+                return config.getStringList(key)
+                        .stream()
+                        .map(
+                                s -> ChatColor.translateAlternateColorCodes('&', s)
+                        )
+                        .collect(Collectors.toList());
+            } else {
+                return config.getStringList(key);
+            }
         }
-        return defaultValue;
+        if (translate) {
+            return defaultValue.stream().map(s -> ChatColor.translateAlternateColorCodes('&', s)).collect(Collectors.toList());
+        } else {
+            return defaultValue;
+        }
+    }
+
+    /**
+     * 取config内的String
+     *
+     * @param key          键名
+     * @param defaultValue 默认值
+     * @param translate    是否转换颜色字符代码
+     * @return {@link String}
+     */
+    public static String getStringByDefault(String key, String defaultValue, boolean translate) {
+        if (config.contains(key) && config.isString(key)) {
+            if (translate) {
+                return ChatColor.translateAlternateColorCodes('&', config.getString(key));
+            } else {
+                return config.getString(key);
+            }
+        }
+        if (translate) {
+            return ChatColor.translateAlternateColorCodes('&', defaultValue);
+        } else {
+            return defaultValue;
+        }
     }
 
     public static int getIntByDefault(String key, int defaultValue) {

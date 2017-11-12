@@ -5,6 +5,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
+ * 创建公会指令
+ *
  * @author Zoyn
  * @since 2017-11-12
  */

@@ -1,0 +1,11 @@
+GuildOptions:
+  NamePattern: "[]"
+CommandMessage:
+  NoPermission: "&c指令权限不足!"
+  Help:
+    - "&e====== &6[&eEpicGuild &l| &e史诗公会&6] &e======"
+    - "&b/guild create [名字] &7创建一个公会"
+    - "&b/guild list &7查看所有公会"
+    - "&b/guild reload &7重载插件"
+  UnknownCommand: "&c未知命令!"
+  Reload: "&a重载成功!"

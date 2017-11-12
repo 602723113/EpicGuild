@@ -1,5 +1,7 @@
 package cc.zoyn.epicguild;
 
+import cc.zoyn.epicguild.command.CommandManager;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -15,6 +17,8 @@ public class EpicGuild extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        saveDefaultConfig();
+        Bukkit.getPluginCommand("epicguild").setExecutor(new CommandManager());
     }
 
     /**
