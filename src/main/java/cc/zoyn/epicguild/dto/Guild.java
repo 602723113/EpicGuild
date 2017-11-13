@@ -21,7 +21,7 @@ public class Guild {
 
     private String owner;
     private String name;
-    private String description = "§7这个战盟很懒什么介绍也没填";
+    private String description = "§7这个公会很懒什么介绍也没填";
     private int level;
     private int maxPeople;
     private List<String> members = Lists.newArrayList();
