@@ -17,9 +17,17 @@ public class ConfigManager {
 
     private static FileConfiguration config = EpicGuild.getInstance().getConfig();
 
+    /**
+     * 你不能实例化ConfigManager
+     */
     private ConfigManager() {
     }
 
+    /**
+     * 取当前Config的FileConfiguration对象
+     *
+     * @return {@link FileConfiguration}
+     */
     public static FileConfiguration getConfig() {
         return config;
     }
