@@ -1,7 +1,9 @@
 package cc.zoyn.epicguild.command;
 
 import cc.zoyn.epicguild.command.subcommand.CreateCommand;
+import cc.zoyn.epicguild.command.subcommand.ListCommand;
 import cc.zoyn.epicguild.command.subcommand.ReloadCommand;
+import cc.zoyn.epicguild.command.subcommand.SendCommand;
 import cc.zoyn.epicguild.manager.ConfigManager;
 import cc.zoyn.epicguild.util.SubCommand;
 import com.google.common.collect.Maps;
@@ -28,7 +30,9 @@ public class CommandManager implements CommandExecutor, ICommandManager {
      */
     public CommandManager() {
         registerCommand("create", new CreateCommand());
+        registerCommand("list", new ListCommand());
         registerCommand("reload", new ReloadCommand());
+        registerCommand("send", new SendCommand());
     }
 
     @Override
@@ -62,6 +66,5 @@ public class CommandManager implements CommandExecutor, ICommandManager {
         subCommand.execute(sender, args);
         return true;
     }
-
 
 }
