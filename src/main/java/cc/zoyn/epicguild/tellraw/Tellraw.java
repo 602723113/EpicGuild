@@ -1,4 +1,4 @@
-package cc.zoyn.epicguild.minecraft.tellraw;
+package cc.zoyn.epicguild.tellraw;
 
 import cc.zoyn.epicguild.EpicGuild;
 import com.google.common.collect.Lists;
@@ -183,15 +183,15 @@ public class Tellraw {
      * @return Json串
      */
     public String toJsonString() {
-        StringBuilder msg = new StringBuilder();
-        msg.append("[\"\"");
-        for (JsonImpl messagePart : jsonParts) {
-            msg.append(",");
-            messagePart.writeJson(msg);
+            StringBuilder msg = new StringBuilder();
+            msg.append("[\"\"");
+            for (JsonImpl messagePart : jsonParts) {
+                msg.append(",");
+                messagePart.writeJson(msg);
+            }
+            msg.append("]");
+            return msg.toString();
         }
-        msg.append("]");
-        return msg.toString();
-    }
 
     public void sendTellraw(Player player) {
         if (!player.isOnline()) {

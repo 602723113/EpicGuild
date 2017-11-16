@@ -1,4 +1,4 @@
-package cc.zoyn.epicguild.minecraft.tellraw;
+package cc.zoyn.epicguild.tellraw;
 
 public class JsonImpl {
 
