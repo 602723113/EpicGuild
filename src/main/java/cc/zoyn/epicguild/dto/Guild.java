@@ -3,13 +3,14 @@ package cc.zoyn.epicguild.dto;
 import cc.zoyn.epicguild.manager.ConfigManager;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +21,7 @@ import java.util.Map;
  * @since 2017-11-12
  */
 @Data
-@AllArgsConstructor
+@NoArgsConstructor
 public final class Guild implements ConfigurationSerializable {
 
     /**
@@ -55,6 +56,26 @@ public final class Guild implements ConfigurationSerializable {
      * 申请加入公会的集合
      */
     private List<Apply> applies = Lists.newArrayList();
+
+    public Guild(String owner, String name, String description, int level, int maxPeople, double money) {
+        this.owner = owner;
+        this.name = name;
+        this.description = description;
+        this.level = level;
+        this.maxPeople = maxPeople;
+        this.money = money;
+        this.members.add(owner);
+    }
+
+    public Guild(String owner, String name, String description, int level, int maxPeople, double money, List<String> members, List<Apply> applies) {
+        this.owner = owner;
+        this.name = name;
+        this.description = description;
+        this.level = level;
+        this.maxPeople = maxPeople;
+        this.money = money;
+        this.members.add(owner);
+    }
 
     public List<Player> getOnlineMembers() {
         List<Player> onlinePlayers = Lists.newArrayList();
@@ -92,7 +113,7 @@ public final class Guild implements ConfigurationSerializable {
         return this.members.contains(player.getName());
     }
 
-    public void removeMemebr(String playerName) {
+    public void removeMemebr(@Nonnull String playerName) {
         // check is owner
         if (!isOwner(playerName)) {
             if (this.members.contains(playerName)) {
@@ -103,14 +124,33 @@ public final class Guild implements ConfigurationSerializable {
             if (player != null) {
                 player.sendMessage(ConfigManager.getStringByDefault("CommandMessage.OwnerCantQuitGuild", "&6[&eEpicGuild6] &c会主不能退出公会", true));
             }
-
         }
     }
 
-    public void removeMember(Player player) {
-        if (this.members.contains(player.getName())) {
-            this.members.remove(player.getName());
+    public void removeMember(@Nonnull Player player) {
+        if (!isOwner(player.getName())) {
+            if (this.members.contains(player.getName())) {
+                this.members.remove(player.getName());
+            }
+        } else {
+            if (player != null) {
+                player.sendMessage(ConfigManager.getStringByDefault("CommandMessage.OwnerCantQuitGuild", "&6[&eEpicGuild6] &c会主不能退出公会", true));
+            }
         }
+    }
+
+    public static Guild deserialize(Map<String, Object> map) {
+        Guild guild = new Guild();
+        guild.setName((String) map.get("Owner"));
+        guild.setName((String) map.get("Name"));
+        guild.setDescription((String) map.get("Description"));
+        guild.setLevel((int) map.get("Level"));
+        guild.setMaxPeople((int) map.get("MaxPeople"));
+        guild.setMoney((double) map.get("Money"));
+        guild.setMembers((List<String>) map.get("Members"));
+        guild.setApplies((List<Apply>) map.get("Applies"));
+
+        return guild;
     }
 
     @Override

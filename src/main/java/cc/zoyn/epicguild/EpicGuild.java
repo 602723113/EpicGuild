@@ -7,6 +7,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+
 /**
  * Main Class
  *
@@ -16,6 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class EpicGuild extends JavaPlugin {
 
     private static EpicGuild instance;
+    private File guildDataFile;
 
     @Override
     public void onEnable() {
@@ -25,6 +28,9 @@ public class EpicGuild extends JavaPlugin {
 
         ConfigurationSerialization.registerClass(Apply.class);
         ConfigurationSerialization.registerClass(Guild.class);
+
+        guildDataFile = new File(getDataFolder(), "/Guilds");
+
     }
 
     /**
@@ -34,6 +40,10 @@ public class EpicGuild extends JavaPlugin {
      */
     public static EpicGuild getInstance() {
         return instance;
+    }
+
+    public File getGuildDataFile() {
+        return guildDataFile;
     }
 
 }
