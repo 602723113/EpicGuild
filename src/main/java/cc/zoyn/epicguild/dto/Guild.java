@@ -74,7 +74,9 @@ public final class Guild implements ConfigurationSerializable {
         this.level = level;
         this.maxPeople = maxPeople;
         this.money = money;
+        this.members = members;
         this.members.add(owner);
+        this.applies = applies;
     }
 
     public List<Player> getOnlineMembers() {
@@ -133,9 +135,7 @@ public final class Guild implements ConfigurationSerializable {
                 this.members.remove(player.getName());
             }
         } else {
-            if (player != null) {
-                player.sendMessage(ConfigManager.getStringByDefault("CommandMessage.OwnerCantQuitGuild", "&6[&eEpicGuild6] &c会主不能退出公会", true));
-            }
+            player.sendMessage(ConfigManager.getStringByDefault("CommandMessage.OwnerCantQuitGuild", "&6[&eEpicGuild6] &c会主不能退出公会", true));
         }
     }
 
