@@ -13,7 +13,15 @@ import java.util.List;
  */
 public class GuildManager implements IGuildManager {
 
+    private static GuildManager instance = new GuildManager();
     private static final List<Guild> guildList = Lists.newArrayList();
+
+    public static GuildManager getInstance() {
+        if (instance == null) {
+            instance = new GuildManager();
+        }
+        return instance;
+    }
 
     @Override
     public GuildManager addGuild(@Nonnull Guild guild) {

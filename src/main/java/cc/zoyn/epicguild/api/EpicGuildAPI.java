@@ -1,7 +1,6 @@
 package cc.zoyn.epicguild.api;
 
-import cc.zoyn.epicguild.dto.Guild;
-import org.bukkit.entity.Player;
+import cc.zoyn.epicguild.manager.GuildManager;
 
 /**
  * @author Zoyn
@@ -9,11 +8,7 @@ import org.bukkit.entity.Player;
  */
 public class EpicGuildAPI {
 
-    public static Guild getGuildByPlayer(Player player) {
-        return null;
-    }
-
-    public static Guild getGuildByName(String guildName) {
-        return null;
+    public static GuildManager getGuildManager() {
+        return GuildManager.getInstance();
     }
 }
