@@ -1,10 +1,9 @@
 language: java
+sudo: false
 jdk: oraclejdk8
 install: mvn clean install package
-before_install:
-  - pip install --user codecov
+
+script: "mvn cobertura:cobertura"
+
 after_success:
-  - codecov
-branches:
-  except:
-    - appveyor
+  - bash <(curl -s https://codecov.io/bash)
