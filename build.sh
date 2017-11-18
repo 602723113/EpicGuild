@@ -1,2 +1,2 @@
-echo "Being built EpigGuild... Version: $CIRCLE_BUILD_NUM"
+echo "Being built EpigGuild..."
 mvn clean install package
