@@ -12,6 +12,14 @@
     <name>EpicGuild</name>
     <url>http://zoyn.cc/</url>
 
+    <developers>
+        <developer>
+            <name>Zoyn</name>
+            <url>https://github.com/602723113</url>
+            <email>602723113@qq.com</email>
+        </developer>
+    </developers>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
