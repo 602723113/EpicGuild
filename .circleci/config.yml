@@ -42,3 +42,6 @@ jobs:
       - store_artifacts:
           path: /home/circleci/repo/target
           destination: EpicGuild
+
+      - run: mvn cobertura:cobertura
+      - run: - bash <(curl -s https://codecov.io/bash)
