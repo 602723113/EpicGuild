@@ -45,8 +45,6 @@ jobs:
 
       - run: mvn cobertura:cobertura
 test:
-  override:
-    - npm run unit
   post:
-    - npm run build
-    - bash <(curl -s https://codecov.io/bash)
+    - pip install --user codecov
+    - codecov
