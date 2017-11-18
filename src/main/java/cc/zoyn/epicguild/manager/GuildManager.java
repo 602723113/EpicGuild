@@ -2,9 +2,10 @@ package cc.zoyn.epicguild.manager;
 
 import cc.zoyn.epicguild.dto.Guild;
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.Validate;
 import org.bukkit.entity.Player;
 
-import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -24,13 +25,17 @@ public class GuildManager implements IGuildManager {
     }
 
     @Override
-    public GuildManager addGuild(@Nonnull Guild guild) {
+    public GuildManager addGuild(@Nullable Guild guild) {
+        Validate.notNull(guild);
+
         guildList.add(guild);
         return this;
     }
 
     @Override
-    public GuildManager removeGuild(@Nonnull Guild guild) {
+    public GuildManager removeGuild(@Nullable Guild guild) {
+        Validate.notNull(guild);
+
         if (guildList.contains(guild)) {
             guildList.remove(guild);
         }
@@ -38,7 +43,9 @@ public class GuildManager implements IGuildManager {
     }
 
     @Override
-    public Guild getGuildByPlayer(Player player) {
+    public Guild getGuildByPlayer(@Nullable Player player) {
+        Validate.notNull(player);
+
         return guildList.stream()
                 .filter(guild -> guild.isMember(player))
                 .findFirst()
@@ -46,7 +53,9 @@ public class GuildManager implements IGuildManager {
     }
 
     @Override
-    public Guild getGuildByName(String guildName) {
+    public Guild getGuildByName(@Nullable String guildName) {
+        Validate.notNull(guildName);
+
         return guildList.stream()
                 .filter(guild -> guild.getName().equals(guildName))
                 .findFirst()
