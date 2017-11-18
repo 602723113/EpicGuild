@@ -5,12 +5,13 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 
-import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
@@ -81,13 +82,15 @@ public final class Guild implements ConfigurationSerializable {
 
     public List<Player> getOnlineMembers() {
         List<Player> onlinePlayers = Lists.newArrayList();
-        Player player;
-        for (int i = 0; i < members.size(); i++) {
-            player = Bukkit.getPlayerExact(members.get(i));
-            if (player != null) {
-                onlinePlayers.add(player);
-            }
-        }
+
+        members.forEach(
+                s -> {
+                    Player player = Bukkit.getPlayerExact(s);
+                    if (player != null) {
+                        onlinePlayers.add(player);
+                    }
+                }
+        );
         return onlinePlayers;
     }
 
@@ -103,7 +106,9 @@ public final class Guild implements ConfigurationSerializable {
         return this.owner.equalsIgnoreCase(playerName);
     }
 
-    public boolean isOwner(Player player) {
+    public boolean isOwner(@Nullable Player player) {
+        Validate.notNull(player);
+
         return this.owner.equalsIgnoreCase(player.getName());
     }
 
@@ -111,11 +116,15 @@ public final class Guild implements ConfigurationSerializable {
         return this.members.contains(playerName);
     }
 
-    public boolean isMember(Player player) {
+    public boolean isMember(@Nullable Player player) {
+        Validate.notNull(player);
+
         return this.members.contains(player.getName());
     }
 
-    public void removeMemebr(@Nonnull String playerName) {
+    public void removeMemebr(@Nullable String playerName) {
+        Validate.notNull(playerName);
+
         // check is owner
         if (!isOwner(playerName)) {
             if (this.members.contains(playerName)) {
@@ -129,7 +138,9 @@ public final class Guild implements ConfigurationSerializable {
         }
     }
 
-    public void removeMember(@Nonnull Player player) {
+    public void removeMember(@Nullable Player player) {
+        Validate.notNull(player);
+
         if (!isOwner(player.getName())) {
             if (this.members.contains(player.getName())) {
                 this.members.remove(player.getName());
