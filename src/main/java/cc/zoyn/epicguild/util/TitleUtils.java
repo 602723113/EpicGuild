@@ -34,7 +34,7 @@ public class TitleUtils {
     public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subTitle) {
         // 获取PL管理
         ProtocolManager pm = ProtocolLibrary.getProtocolManager();
-        PacketContainer packet = null;
+        PacketContainer packet;
         if (title != null) {
             title = ChatColor.translateAlternateColorCodes('&', title); // 支持&颜色代码
             title = title.replaceAll("%player%", player.getName());
