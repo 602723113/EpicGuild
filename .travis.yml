@@ -2,6 +2,9 @@ language: java
 jdk: oraclejdk8
 install: mvn clean install package
 
-script: "mvn cobertura:cobertura"
+script:
+  - mvn cobertura:cobertura
+  - npm test
+  - np, run report-coverage
 after_success:
   - bash <(curl -s https://codecov.io/bash)
