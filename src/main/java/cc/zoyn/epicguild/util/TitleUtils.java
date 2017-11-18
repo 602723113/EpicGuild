@@ -16,7 +16,7 @@ import java.lang.reflect.InvocationTargetException;
  *
  * @author May_Speed
  * @since 2016/12/26
- *
+ * <p>
  * update 2017/8/05
  */
 public class TitleUtils {
@@ -31,8 +31,7 @@ public class TitleUtils {
      * @param title    主标题
      * @param subTitle 副标题
      */
-    public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title,
-                                 String subTitle) {
+    public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subTitle) {
         // 获取PL管理
         ProtocolManager pm = ProtocolLibrary.getProtocolManager();
         PacketContainer packet = null;
