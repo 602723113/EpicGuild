@@ -42,9 +42,3 @@ jobs:
       - store_artifacts:
           path: /home/circleci/repo/target
           destination: EpicGuild
-
-      - run: mvn cobertura:cobertura
-test:
-  post:
-    - pip install --user codecov
-    - codecov
