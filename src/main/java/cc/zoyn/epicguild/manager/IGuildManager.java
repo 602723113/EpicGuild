@@ -11,6 +11,8 @@ import java.util.List;
  */
 public interface IGuildManager {
 
+    List<Guild> loadGuilds();
+
     GuildManager addGuild(Guild guild);
 
     GuildManager removeGuild(Guild guild);

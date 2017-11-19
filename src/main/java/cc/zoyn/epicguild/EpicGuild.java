@@ -3,6 +3,7 @@ package cc.zoyn.epicguild;
 import cc.zoyn.epicguild.command.CommandManager;
 import cc.zoyn.epicguild.dto.Apply;
 import cc.zoyn.epicguild.dto.Guild;
+import cc.zoyn.epicguild.manager.GuildManager;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,13 +25,19 @@ public class EpicGuild extends JavaPlugin {
     public void onEnable() {
         instance = this;
         saveDefaultConfig();
-        Bukkit.getPluginCommand("epicguild").setExecutor(new CommandManager());
 
+        guildDataFile = new File(getDataFolder(), "/Guilds");
+        if (!guildDataFile.exists()) {
+            guildDataFile.mkdirs();
+        }
+
+        // register some things..
+        Bukkit.getPluginCommand("epicguild").setExecutor(new CommandManager());
         ConfigurationSerialization.registerClass(Apply.class);
         ConfigurationSerialization.registerClass(Guild.class);
 
-        guildDataFile = new File(getDataFolder(), "/Guilds");
-
+        // loading guilds
+        GuildManager.getInstance().loadGuilds();
     }
 
     /**
