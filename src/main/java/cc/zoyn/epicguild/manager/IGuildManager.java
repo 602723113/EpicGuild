@@ -11,7 +11,6 @@ import java.util.List;
  */
 public interface IGuildManager {
 
-    List<Guild> loadGuilds();
 
     GuildManager addGuild(Guild guild);
 
@@ -22,5 +21,9 @@ public interface IGuildManager {
     Guild getGuildByName(String guildName);
 
     List<Guild> getGuilds();
+
+    List<Guild> loadGuilds();
+
+    void saveGuilds();
 
 }

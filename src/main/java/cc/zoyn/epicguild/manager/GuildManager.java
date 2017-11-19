@@ -30,29 +30,6 @@ public class GuildManager implements IGuildManager {
     }
 
     @Override
-    public List<Guild> loadGuilds() {
-        guildList.clear();
-        File dataFile = EpicGuild.getInstance().getGuildDataFile();
-        if (dataFile == null) {
-            Bukkit.getLogger().warning("GuildDataFolder is missing!");
-            return guildList;
-        }
-
-        FileConfiguration fileConfiguration;
-        Guild guild;
-
-        for (File file : dataFile.listFiles()) {
-            fileConfiguration = ConfigurationUtils.loadYml(file);
-            if (fileConfiguration.contains("Guild")) {
-                guild = (Guild) fileConfiguration.get("Guild");
-                guildList.add(guild);
-            }
-        }
-
-        return guildList;
-    }
-
-    @Override
     public GuildManager addGuild(@Nullable Guild guild) {
         Validate.notNull(guild);
 
@@ -93,5 +70,34 @@ public class GuildManager implements IGuildManager {
     @Override
     public List<Guild> getGuilds() {
         return guildList;
+    }
+
+    @Override
+    public List<Guild> loadGuilds() {
+        guildList.clear();
+        File dataFile = EpicGuild.getInstance().getGuildDataFile();
+        if (dataFile == null) {
+            Bukkit.getLogger().warning("GuildDataFolder is missing!");
+            return guildList;
+        }
+
+        FileConfiguration fileConfiguration;
+        Guild guild;
+
+        for (File file : dataFile.listFiles()) {
+            fileConfiguration = ConfigurationUtils.loadYml(file);
+            if (fileConfiguration.contains("Guild")) {
+                guild = (Guild) fileConfiguration.get("Guild");
+                guildList.add(guild);
+            }
+        }
+
+        return guildList;
+    }
+
+
+    @Override
+    public void saveGuilds() {
+
     }
 }
