@@ -20,6 +20,7 @@ CommandMessage:
     - "&b/guild list &7查看所有公会"
     - "&b/guild reload &7重载插件"
   CreateSuccess: "&6[&eEpicGuild&6] &a成功创建公会&f&l[ &6%guild_name% &f&l]"
+  LeaveSuccess: "&6[&eEpicGuild&6] &a退出公会成功!"
   PlayerDontHaveGuild: "&6[&eEpicGuild&6] &c你没有公会!"
   UnknownCommand: "&6[&eEpicGuild&6] &c未知命令!"
   OwnerCantQuitGuild: "&6[&eEpicGuild&6] &c会主不能退出公会!"

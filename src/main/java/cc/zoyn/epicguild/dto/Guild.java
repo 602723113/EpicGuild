@@ -122,7 +122,7 @@ public final class Guild implements ConfigurationSerializable {
         return this.members.contains(player.getName());
     }
 
-    public void removeMemebr(@Nullable String playerName) {
+    public void removeMember(@Nullable String playerName) {
         Validate.notNull(playerName);
 
         // check is owner
