@@ -1,9 +1,11 @@
 package cc.zoyn.epicguild;
 
 import cc.zoyn.epicguild.command.CommandManager;
+import cc.zoyn.epicguild.dao.DatabaseManager;
 import cc.zoyn.epicguild.dto.Apply;
 import cc.zoyn.epicguild.dto.Guild;
 import cc.zoyn.epicguild.manager.GuildManager;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -16,10 +18,12 @@ import java.io.File;
  * @author Zoyn
  * @since 2017-11-12
  */
+@Getter
 public class EpicGuild extends JavaPlugin {
 
     private static EpicGuild instance;
     private File guildDataFile;
+    private DatabaseManager databaseManager = null;
 
     @Override
     public void onEnable() {
@@ -40,6 +44,8 @@ public class EpicGuild extends JavaPlugin {
 
         // loading guilds
         GuildManager.getInstance().loadGuilds();
+
+//        databaseManager = new DatabaseManager();
     }
 
     /**
@@ -49,10 +55,6 @@ public class EpicGuild extends JavaPlugin {
      */
     public static EpicGuild getInstance() {
         return instance;
-    }
-
-    public File getGuildDataFile() {
-        return guildDataFile;
     }
 
 }
