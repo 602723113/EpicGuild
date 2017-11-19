@@ -150,6 +150,21 @@ public final class Guild implements ConfigurationSerializable {
         }
     }
 
+    public void addApply(Apply apply) {
+        for (Apply applyTemp : applies) {
+            if (applyTemp.getPlayerName().equalsIgnoreCase(apply.getPlayerName())) {
+                return;
+            }
+        }
+        applies.add(apply);
+    }
+
+    public void removeApply(Apply apply) {
+        if (applies.contains(apply)) {
+            applies.remove(apply);
+        }
+    }
+
     public static Guild deserialize(Map<String, Object> map) {
         Guild guild = new Guild();
         guild.setName((String) map.get("Owner"));

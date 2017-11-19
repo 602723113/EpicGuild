@@ -26,6 +26,8 @@ public class CreateCommand implements SubCommand {
             Guild guild = new Guild(player.getName(), args[1], "§7这个公会很懒什么介绍也没填", 1, ConfigManager.getIntByDefault("GuildOptions.MaxPeople.1", 10), 0);
             GuildManager.getInstance().addGuild(guild);
             player.sendMessage(ConfigManager.getStringByDefault("CommandMessage.CreateSuccess", "&6[&eEpicGuild&6] &a成功创建公会&f&l[ &6%guild_name% &f&l]", true));
+        } else {
+            sender.sendMessage(ConfigManager.getStringByDefault("CommandMessage.NotAPlayer", "&6[&eEpicGuild&6] &c你必须是一名玩家!", true));
         }
     }
 

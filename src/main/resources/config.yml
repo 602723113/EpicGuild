@@ -10,8 +10,10 @@ GuildOptions:
   # 公会名字需要满足下方的正则表达式
   NamePattern: "[]"
 CommandMessage:
+  NotAPlayer: "&6[&eEpicGuild&6] &c你必须是一名玩家!"
   CommandLengthWrong: "&6[&eEpicGuild&6] &c指令用法不正确! 请输入 &e/guild help &c查看帮助."
   NoPermission: "&6[&eEpicGuild&6] &c指令权限不足!"
+  MissingGuild: "&6[&eEpicGuild&6] &c公会不存在!"
   Help:
     - "&e====== &6[&eEpicGuild &l| &e史诗公会&6] &e======"
     - "&b/guild create [名字] &7创建一个公会"

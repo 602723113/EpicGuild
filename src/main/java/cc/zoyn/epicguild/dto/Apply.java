@@ -16,10 +16,14 @@ import java.util.Map;
  */
 @Data
 @AllArgsConstructor
-public class Apply implements ConfigurationSerializable {
+public final class Apply implements ConfigurationSerializable {
 
     private String playerName;
     private Date createTime;
+
+    public static Apply createApply(String playerName, Date createTime) {
+        return new Apply(playerName, createTime);
+    }
 
     @Override
     public Map<String, Object> serialize() {
