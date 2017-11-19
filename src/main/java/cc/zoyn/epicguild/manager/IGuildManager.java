@@ -11,6 +11,8 @@ import java.util.List;
  */
 public interface IGuildManager {
 
+    Guild createGuild(String owner, String name, String description, int level, int maxPeople, double money);
+
     GuildManager addGuild(Guild guild);
 
     GuildManager removeGuild(Guild guild);

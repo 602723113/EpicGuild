@@ -22,4 +22,5 @@ public class EpicGuildAPI {
     public static void sendActionbar(Player player, String msg) {
         ActionBarUtils.sendBar(player, msg);
     }
+
 }

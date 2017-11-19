@@ -102,7 +102,9 @@ public final class Guild implements ConfigurationSerializable {
         msg.forEach(this::sendMessage);
     }
 
-    public boolean isOwner(String playerName) {
+    public boolean isOwner(@Nullable String playerName) {
+        Validate.notNull(playerName);
+
         return this.owner.equalsIgnoreCase(playerName);
     }
 
@@ -112,7 +114,9 @@ public final class Guild implements ConfigurationSerializable {
         return this.owner.equalsIgnoreCase(player.getName());
     }
 
-    public boolean isMember(String playerName) {
+    public boolean isMember(@Nullable String playerName) {
+        Validate.notNull(playerName);
+
         return this.members.contains(playerName);
     }
 
@@ -162,6 +166,18 @@ public final class Guild implements ConfigurationSerializable {
     public void removeApply(Apply apply) {
         if (applies.contains(apply)) {
             applies.remove(apply);
+        }
+    }
+
+    public void addMoney(double money) {
+        if (money >= 0) {
+            this.money += money;
+        }
+    }
+
+    public void takeMoney(double money) {
+        if (money >= 0) {
+            this.money -= money;
         }
     }
 

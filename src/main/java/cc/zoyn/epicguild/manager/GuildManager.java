@@ -30,6 +30,11 @@ public class GuildManager implements IGuildManager {
     }
 
     @Override
+    public Guild createGuild(String owner, String name, String description, int level, int maxPeople, double money) {
+        return new Guild(owner, name, description, level, maxPeople, money);
+    }
+
+    @Override
     public GuildManager addGuild(@Nullable Guild guild) {
         Validate.notNull(guild);
 
@@ -94,7 +99,6 @@ public class GuildManager implements IGuildManager {
         }
         return guildList;
     }
-
 
     @Override
     public void saveGuilds() {
