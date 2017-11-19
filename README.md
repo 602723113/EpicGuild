@@ -1,4 +1,4 @@
-# EpicGuild | 史诗公会 [![CircleCI](https://circleci.com/gh/602723113/EpicGuild/tree/dev.svg?style=svg)](https://circleci.com/gh/602723113/EpicGuild/tree/dev) [![Build Status](https://travis-ci.org/602723113/EpicGuild.svg?branch=dev)](https://travis-ci.org/602723113/EpicGuild) [![codecov](https://codecov.io/gh/602723113/EpicGuild/branch/dev/graph/badge.svg)](https://codecov.io/gh/602723113/EpicGuild)  
+# EpicGuild | 史诗公会 [![CircleCI](https://circleci.com/gh/602723113/EpicGuild/tree/dev.svg?style=svg)](https://circleci.com/gh/602723113/EpicGuild/tree/dev) [![Build Status](https://travis-ci.org/602723113/EpicGuild.svg?branch=dev)](https://travis-ci.org/602723113/EpicGuild)   
 ### Feature | 特性:
 - 自定义
 - 高效
