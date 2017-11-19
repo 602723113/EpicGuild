@@ -1,4 +1,17 @@
-GuildOptions:
+# ##################
+# #####数据库设置#####
+# ##################
+DatabaseOptions:
+  host: localhost
+  port: 3306
+  user: root
+  password: root
+  database: mc
+# ###################
+# ###史诗公会综合设置###
+# ###################
+EpicGuildOptions:
+  DataStorageType: YAML
   # 公会最大等级
   HighestGuildLevel: 3
   # 每个级别公会的最大人数

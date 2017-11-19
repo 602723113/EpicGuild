@@ -34,9 +34,7 @@ public class DatabaseManager {
 
     public void initialize() {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:mysql://" + this.host + ":" + String.valueOf(this.port) + "/"
-                + this.database + "?autoReconnect=true&serverTimezone=" + TimeZone
-                .getDefault().getID());
+        config.setJdbcUrl("jdbc:mysql://" + this.host + ":" + String.valueOf(this.port) + "/" + this.database + "?autoReconnect=true&serverTimezone=" + TimeZone.getDefault().getID());
         config.setUsername(this.userName);
         config.setPassword(this.password);
         config.addDataSourceProperty("cachePrepStmts", "true");
