@@ -1,27 +1,12 @@
 GuildOptions:
-  # 公会最大等级
-  HighestGuildLevel: 3
-
-  # 每个级别公会的最大人数
-  MaxPeople:
-    1: 10
-    2: 15
-    3: 20
-
-  # 公会名字
-  # 公会名字需要满足下方的正则表达式
   NamePattern: "[]"
-
 CommandMessage:
-  CommandLengthWrong: "&6[&eEpicGuild&6] &c指令用法不正确! 请输入 &e/guild help &c查看帮助."
   NoPermission: "&6[&eEpicGuild&6] &c指令权限不足!"
   Help:
     - "&e====== &6[&eEpicGuild &l| &e史诗公会&6] &e======"
     - "&b/guild create [名字] &7创建一个公会"
     - "&b/guild list &7查看所有公会"
     - "&b/guild reload &7重载插件"
-  CreateSuccess: "&6[&eEpicGuild&6] &a成功创建公会&f&l[ &6%guild_name% &f&l]"
   UnknownCommand: "&6[&eEpicGuild&6] &c未知命令!"
   OwnerCantQuitGuild: "&6[&eEpicGuild&6] &c会主不能退出公会!"
   Reload: "&6[&eEpicGuild&6] &a重载成功!"
-

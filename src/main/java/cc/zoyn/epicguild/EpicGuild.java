@@ -24,10 +24,8 @@ public class EpicGuild extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-
-        // save yml
         saveDefaultConfig();
-        saveResource("items.yml", false);
+
         guildDataFile = new File(getDataFolder(), "/Guilds");
         if (!guildDataFile.exists()) {
             guildDataFile.mkdirs();
