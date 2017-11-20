@@ -19,10 +19,10 @@ import java.util.List;
  */
 public class GuildManagerImpl implements GuildManager {
 
-    private static GuildManagerImpl instance = new GuildManagerImpl();
+    private static GuildManager instance = new GuildManagerImpl();
     private static final List<Guild> guildList = Lists.newArrayList();
 
-    public static GuildManagerImpl getInstance() {
+    public static GuildManager getInstance() {
         if (instance == null) {
             instance = new GuildManagerImpl();
         }
