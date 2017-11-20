@@ -1,10 +1,12 @@
 package cc.zoyn.epicguild;
 
-import cc.zoyn.epicguild.command.CommandManager;
+import cc.zoyn.epicguild.command.CommandManagerImpl;
 import cc.zoyn.epicguild.dao.DatabaseManager;
 import cc.zoyn.epicguild.dto.Apply;
+import cc.zoyn.epicguild.dto.DataStorageType;
 import cc.zoyn.epicguild.dto.Guild;
-import cc.zoyn.epicguild.manager.GuildManager;
+import cc.zoyn.epicguild.manager.ConfigManager;
+import cc.zoyn.epicguild.manager.GuildManagerImpl;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
@@ -38,14 +40,16 @@ public class EpicGuild extends JavaPlugin {
         }
 
         // register some things..
-        Bukkit.getPluginCommand("epicguild").setExecutor(new CommandManager());
+        Bukkit.getPluginCommand("epicguild").setExecutor(new CommandManagerImpl());
         ConfigurationSerialization.registerClass(Apply.class);
         ConfigurationSerialization.registerClass(Guild.class);
 
         // loading guilds
-        GuildManager.getInstance().loadGuilds();
+        GuildManagerImpl.getInstance().loadGuilds();
 
-//        databaseManager = new DatabaseManager();
+        ConfigManager.getEnumByDefault("", DataStorageType.YAML);
+
+//        databaseManager = new DatabaseManagerImpl();
     }
 
     /**

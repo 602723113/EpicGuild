@@ -181,6 +181,7 @@ public final class Guild implements ConfigurationSerializable {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public static Guild deserialize(Map<String, Object> map) {
         Guild guild = new Guild();
         guild.setName((String) map.get("Owner"));

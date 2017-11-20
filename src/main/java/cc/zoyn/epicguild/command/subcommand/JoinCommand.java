@@ -3,7 +3,7 @@ package cc.zoyn.epicguild.command.subcommand;
 import cc.zoyn.epicguild.dto.Apply;
 import cc.zoyn.epicguild.dto.Guild;
 import cc.zoyn.epicguild.manager.ConfigManager;
-import cc.zoyn.epicguild.manager.GuildManager;
+import cc.zoyn.epicguild.manager.GuildManagerImpl;
 import cc.zoyn.epicguild.util.SubCommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -21,7 +21,7 @@ public class JoinCommand implements SubCommand {
         if (sender instanceof Player) {
 
             // get guild object
-            Guild guild = GuildManager.getInstance().getGuildByName(args[1]);
+            Guild guild = GuildManagerImpl.getInstance().getGuildByName(args[1]);
             if (guild == null) {
                 sender.sendMessage(ConfigManager.getStringByDefault("CommandMessage.MissingGuild", "&6[&eEpicGuild&6] &c公会不存在!", true));
                 return;

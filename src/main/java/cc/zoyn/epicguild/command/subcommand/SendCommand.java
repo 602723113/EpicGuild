@@ -2,7 +2,7 @@ package cc.zoyn.epicguild.command.subcommand;
 
 import cc.zoyn.epicguild.dto.Guild;
 import cc.zoyn.epicguild.manager.ConfigManager;
-import cc.zoyn.epicguild.manager.GuildManager;
+import cc.zoyn.epicguild.manager.GuildManagerImpl;
 import cc.zoyn.epicguild.util.SubCommand;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -19,7 +19,7 @@ public class SendCommand implements SubCommand {
         if (sender instanceof Player) {
             Player player = (Player) sender;
 
-            Guild guild = GuildManager.getInstance().getGuildByPlayer(player);
+            Guild guild = GuildManagerImpl.getInstance().getGuildByPlayer(player);
             if (guild != null) {
                 guild.sendMessage(ChatColor.translateAlternateColorCodes('&', args[1]));
             } else {

@@ -2,7 +2,7 @@ package cc.zoyn.epicguild.command.subcommand;
 
 import cc.zoyn.epicguild.dto.Guild;
 import cc.zoyn.epicguild.manager.ConfigManager;
-import cc.zoyn.epicguild.manager.GuildManager;
+import cc.zoyn.epicguild.manager.GuildManagerImpl;
 import cc.zoyn.epicguild.util.SubCommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -17,7 +17,7 @@ public class LeaveCommand implements SubCommand {
     public void execute(CommandSender sender, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            Guild guild = GuildManager.getInstance().getGuildByPlayer(player);
+            Guild guild = GuildManagerImpl.getInstance().getGuildByPlayer(player);
             if (guild == null) {
                 player.sendMessage(ConfigManager.getStringByDefault("CommandMessage.PlayerDontHaveGuild", "&6[&eEpicGuild&6] &c你没有公会!", true));
                 return;

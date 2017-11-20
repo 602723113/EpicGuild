@@ -14,12 +14,15 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * Title工具类
  *
- * @author May_Speed
+ * @author Zoyn
  * @since 2016/12/26
  * <p>
  * update 2017/8/05
  */
 public class TitleUtils {
+
+    private TitleUtils() {
+    }
 
     /**
      * 给一个玩家发送Title信息 1.8+
@@ -36,8 +39,8 @@ public class TitleUtils {
         ProtocolManager pm = ProtocolLibrary.getProtocolManager();
         PacketContainer packet;
         if (title != null) {
-            title = ChatColor.translateAlternateColorCodes('&', title); // 支持&颜色代码
-            title = title.replaceAll("%player%", player.getName());
+            String titleString = ChatColor.translateAlternateColorCodes('&', title); // 支持&颜色代码
+            titleString = titleString.replaceAll("%player%", player.getName());
             // 创建标题数据包
             packet = pm.createPacket(PacketType.Play.Server.TITLE);
             // nms内封包结构为
@@ -47,7 +50,7 @@ public class TitleUtils {
 			 */
             // 按顺序往里写入数据
             packet.getTitleActions().write(0, EnumWrappers.TitleAction.TITLE); // EnumTitleAction
-            packet.getChatComponents().write(0, WrappedChatComponent.fromText(title)); // 标题内容
+            packet.getChatComponents().write(0, WrappedChatComponent.fromText(titleString)); // 标题内容
             packet.getIntegers()
                     .write(0, fadeIn) // ---> c
                     .write(1, stay) // ---> d
@@ -60,11 +63,11 @@ public class TitleUtils {
         }
 
         if (subTitle != null) {
-            subTitle = ChatColor.translateAlternateColorCodes('&', subTitle); // 支持&颜色代码
-            subTitle = subTitle.replaceAll("%player%", player.getName());
+            String subTitleString = ChatColor.translateAlternateColorCodes('&', subTitle); // 支持&颜色代码
+            subTitleString = subTitleString.replaceAll("%player%", player.getName());
             packet = pm.createPacket(PacketType.Play.Server.TITLE);
             packet.getTitleActions().write(0, EnumWrappers.TitleAction.SUBTITLE);
-            packet.getChatComponents().write(0, WrappedChatComponent.fromText(subTitle));
+            packet.getChatComponents().write(0, WrappedChatComponent.fromText(subTitleString));
             packet.getIntegers().write(0, fadeIn);
             packet.getIntegers().write(1, stay);
             packet.getIntegers().write(2, fadeOut);
