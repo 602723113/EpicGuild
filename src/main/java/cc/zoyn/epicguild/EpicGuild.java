@@ -2,6 +2,7 @@ package cc.zoyn.epicguild;
 
 import cc.zoyn.epicguild.command.CommandManagerImpl;
 import cc.zoyn.epicguild.dao.DatabaseManager;
+import cc.zoyn.epicguild.dao.DatabaseManagerImpl;
 import cc.zoyn.epicguild.dto.Apply;
 import cc.zoyn.epicguild.dto.DataStorageType;
 import cc.zoyn.epicguild.dto.Guild;
@@ -47,9 +48,20 @@ public class EpicGuild extends JavaPlugin {
         // loading guilds
         GuildManagerImpl.getInstance().loadGuilds();
 
-        ConfigManager.getEnumByDefault("", DataStorageType.YAML);
+        // check storage type
+        String storageType = ConfigManager.getStringByDefault("EpicGuildOptions.DataStorageType", "YAML", false);
+        if (DataStorageType.getByName(storageType).equals(DataStorageType.MySQL)) {
 
-//        databaseManager = new DatabaseManagerImpl();
+            String host = ConfigManager.getStringByDefault("DatabaseOptions.host", "localhost", false);
+            int port = ConfigManager.getIntByDefault("DatabaseOptions.port", 3306);
+            String user = ConfigManager.getStringByDefault("DatabaseOptions.user", "root", false);
+            String password = ConfigManager.getStringByDefault("DatabaseOptions.password", "root", false);
+            String database = ConfigManager.getStringByDefault("DatabaseOptions.database", "mc", false);
+            String tablePrefix = ConfigManager.getStringByDefault("DatabaseOptions.tableprefix", "eg_", false);
+
+            databaseManager = new DatabaseManagerImpl(host, port, user, password, database, tablePrefix);
+            databaseManager.initialize();
+        }
     }
 
     /**
@@ -59,6 +71,10 @@ public class EpicGuild extends JavaPlugin {
      */
     public static EpicGuild getInstance() {
         return instance;
+    }
+
+    public DatabaseManager getDatabaseManager() {
+        return databaseManager;
     }
 
 }

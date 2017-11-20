@@ -111,10 +111,4 @@ public class ConfigManager {
         return defaultValue;
     }
 
-    public static Enum getEnumByDefault(String key, Enum deafultValue) {
-        if (config.contains(key)) {
-            return (Enum) config.get(key);
-        }
-        return deafultValue;
-    }
 }
