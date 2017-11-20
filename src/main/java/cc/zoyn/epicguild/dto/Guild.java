@@ -12,6 +12,7 @@ import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -50,6 +51,10 @@ public final class Guild implements ConfigurationSerializable {
      */
     private double money;
     /**
+     * 建立时间
+     */
+    private Date createTime;
+    /**
      * 公会成员集合
      */
     private List<String> members = Lists.newArrayList();
@@ -65,6 +70,7 @@ public final class Guild implements ConfigurationSerializable {
         this.level = level;
         this.maxPeople = maxPeople;
         this.money = money;
+        this.createTime = new Date();
         this.members.add(owner);
     }
 
@@ -75,6 +81,7 @@ public final class Guild implements ConfigurationSerializable {
         this.level = level;
         this.maxPeople = maxPeople;
         this.money = money;
+        this.createTime = new Date();
         this.members = members;
         this.members.add(owner);
         this.applies = applies;
@@ -184,14 +191,15 @@ public final class Guild implements ConfigurationSerializable {
     @SuppressWarnings("unchecked")
     public static Guild deserialize(Map<String, Object> map) {
         Guild guild = new Guild();
-        guild.setName((String) map.get("Owner"));
-        guild.setName((String) map.get("Name"));
-        guild.setDescription((String) map.get("Description"));
-        guild.setLevel((int) map.get("Level"));
-        guild.setMaxPeople((int) map.get("MaxPeople"));
-        guild.setMoney((double) map.get("Money"));
-        guild.setMembers((List<String>) map.get("Members"));
-        guild.setApplies((List<Apply>) map.get("Applies"));
+        guild.setName((String) map.get("owner"));
+        guild.setName((String) map.get("name"));
+        guild.setDescription((String) map.get("description"));
+        guild.setLevel((int) map.get("level"));
+        guild.setMaxPeople((int) map.get("maxPeople"));
+        guild.setMoney((double) map.get("money"));
+        guild.setCreateTime(new Date((long) map.get("createTime")));
+        guild.setMembers((List<String>) map.get("members"));
+        guild.setApplies((List<Apply>) map.get("applies"));
 
         return guild;
     }
@@ -199,14 +207,15 @@ public final class Guild implements ConfigurationSerializable {
     @Override
     public Map<String, Object> serialize() {
         Map<String, Object> map = Maps.newHashMap();
-        map.put("Owner", this.owner);
-        map.put("Name", this.name);
-        map.put("Description", this.description);
-        map.put("Level", this.level);
-        map.put("MaxPeople", this.maxPeople);
-        map.put("Money", this.money);
-        map.put("Members", this.members);
-        map.put("Applies", this.applies);
+        map.put("owner", this.owner);
+        map.put("name", this.name);
+        map.put("description", this.description);
+        map.put("level", this.level);
+        map.put("maxPeople", this.maxPeople);
+        map.put("money", this.money);
+        map.put("createTime", this.createTime.getTime());
+        map.put("members", this.members);
+        map.put("applies", this.applies);
         return map;
     }
 

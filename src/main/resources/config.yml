@@ -12,7 +12,7 @@ DatabaseOptions:
 # ###史诗公会综合设置###
 # ###################
 EpicGuildOptions:
-  DataStorageType: YAML
+  DataStorageType: yaml
   # 公会最大等级
   HighestGuildLevel: 3
   # 每个级别公会的最大人数

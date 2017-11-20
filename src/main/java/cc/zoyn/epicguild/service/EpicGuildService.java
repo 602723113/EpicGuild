@@ -6,4 +6,6 @@ package cc.zoyn.epicguild.service;
  */
 public interface EpicGuildService {
 
+
+
 }

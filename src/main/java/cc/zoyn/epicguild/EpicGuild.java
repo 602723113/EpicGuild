@@ -48,6 +48,7 @@ public class EpicGuild extends JavaPlugin {
         // loading guilds
         GuildManagerImpl.getInstance().loadGuilds();
 
+
         // check storage type
         String storageType = ConfigManager.getStringByDefault("EpicGuildOptions.DataStorageType", "YAML", false);
         if (DataStorageType.getByName(storageType).equals(DataStorageType.MySQL)) {

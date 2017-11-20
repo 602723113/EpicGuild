@@ -15,12 +15,12 @@ import java.util.TimeZone;
 @Getter
 public class DatabaseManagerImpl implements DatabaseManager {
 
-    private String tablePrefix = "eg_";
-    private String database = null;
     private String host = null;
     private int port = 3306;
     private String userName;
     private String password = null;
+    private String database = null;
+    private String tablePrefix = "eg_";
     private HikariDataSource dataSource = null;
 
     public DatabaseManagerImpl(String host, int port, String userName, String password, String database, String tablePrefix) {
@@ -42,6 +42,13 @@ public class DatabaseManagerImpl implements DatabaseManager {
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
 
         this.dataSource = new HikariDataSource(config);
+
+        try {
+            System.out.println("execute");
+            getConnection().prepareStatement(getCreateTableSQL()).execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public Connection getConnection() {
@@ -51,6 +58,19 @@ public class DatabaseManagerImpl implements DatabaseManager {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public String getCreateTableSQL() {
+        StringBuilder builder = new StringBuilder("CREATE TABLE IF NOT EXISTS ");
+        builder.append(this.tablePrefix)
+                .append("guilds (id INT AUTO_INCREMENT PRIMARY KEY,")
+                .append("guild_name TEXT NOT NULL,")
+                .append("owner_name TEXT NOT NULL,")
+                .append("max_player INT NOT NULL,")
+                .append("level INT NOT NULL,")
+                .append("money DOUBLE NOT NULL,")
+                .append("create_time DATETIME NOT NULL);");
+        return builder.toString();
     }
 
     public boolean isClose() {
