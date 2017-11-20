@@ -69,13 +69,12 @@ public class Tellraw {
     /**
      * 添加显示操作
      *
-     * @param name 悬浮显示
      * @param data 显示内容
      * @return {@link Tellraw}
      */
-    private Tellraw onHover(String name, String data) {
+    private Tellraw onHover(String data) {
         JsonImpl latest = latest();
-        latest.hoverActionName = name;
+        latest.hoverActionName = "show_text";
         latest.hoverActionData = data;
         return this;
     }
@@ -138,7 +137,7 @@ public class Tellraw {
      * @return {@link Tellraw}
      */
     public Tellraw addHover(String text) {
-        return onHover("show_text", text);
+        return onHover(text);
     }
 
     /**
