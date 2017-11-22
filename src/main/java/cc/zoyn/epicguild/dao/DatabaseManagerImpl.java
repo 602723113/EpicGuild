@@ -3,6 +3,7 @@ package cc.zoyn.epicguild.dao;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.Getter;
+import org.bukkit.Bukkit;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -17,8 +18,8 @@ public class DatabaseManagerImpl implements DatabaseManager {
 
     private String host = null;
     private int port = 3306;
-    private String userName;
-    private String password = null;
+    private String userName = "root";
+    private String password = "";
     private String database = null;
     private String tablePrefix = "eg_";
     private HikariDataSource dataSource = null;
@@ -44,11 +45,11 @@ public class DatabaseManagerImpl implements DatabaseManager {
         this.dataSource = new HikariDataSource(config);
 
         try {
-            System.out.println("execute");
             getConnection().prepareStatement(getCreateTableSQL()).execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        Bukkit.getLogger().info("initialize database successfully!");
     }
 
     public Connection getConnection() {

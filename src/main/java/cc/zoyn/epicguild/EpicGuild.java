@@ -40,13 +40,11 @@ public class EpicGuild extends JavaPlugin {
             guildDataFile.mkdirs();
         }
 
+
         // register some things..
         Bukkit.getPluginCommand("epicguild").setExecutor(new CommandManagerImpl());
         ConfigurationSerialization.registerClass(Apply.class);
         ConfigurationSerialization.registerClass(Guild.class);
-
-        // loading guilds
-        GuildManagerImpl.getInstance().loadGuilds();
 
 
         // check storage type
@@ -56,13 +54,17 @@ public class EpicGuild extends JavaPlugin {
             String host = ConfigManager.getStringByDefault("DatabaseOptions.host", "localhost", false);
             int port = ConfigManager.getIntByDefault("DatabaseOptions.port", 3306);
             String user = ConfigManager.getStringByDefault("DatabaseOptions.user", "root", false);
-            String password = ConfigManager.getStringByDefault("DatabaseOptions.password", "root", false);
+            String password = ConfigManager.getStringByDefault("DatabaseOptions.password", "", false);
             String database = ConfigManager.getStringByDefault("DatabaseOptions.database", "mc", false);
             String tablePrefix = ConfigManager.getStringByDefault("DatabaseOptions.tableprefix", "eg_", false);
 
             databaseManager = new DatabaseManagerImpl(host, port, user, password, database, tablePrefix);
             databaseManager.initialize();
         }
+
+
+        // loading guilds
+        GuildManagerImpl.getInstance().loadGuilds();
     }
 
     /**

@@ -1,6 +1,7 @@
 package cc.zoyn.epicguild.command;
 
 import cc.zoyn.epicguild.util.SubCommand;
+import org.bukkit.command.CommandExecutor;
 
 /**
  * 用于规范{@link CommandManagerImpl}
@@ -8,7 +9,7 @@ import cc.zoyn.epicguild.util.SubCommand;
  * @author Zoyn
  * @since 2017-11-12
  */
-public interface CommandManager {
+public interface CommandManager extends CommandExecutor {
 
     /**
      * 注册一个子命令

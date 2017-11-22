@@ -18,7 +18,7 @@ import java.util.Map;
  * @author Zoyn
  * @since 2017-11-12
  */
-public class CommandManagerImpl implements CommandExecutor, CommandManager {
+public class CommandManagerImpl implements CommandManager {
 
     private static Map<String, SubCommand> commandMap = Maps.newHashMap();
 
