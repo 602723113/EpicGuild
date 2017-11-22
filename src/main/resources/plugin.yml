@@ -2,6 +2,7 @@ name: EpicGuild
 main: cc.zoyn.epicguild.EpicGuild
 version: 0.0.1
 author: Zoyn
+softdepend: [PlaceholderAPI]
 commands:
   epicguild:
     aliases: [ep,guild,gh,bp]

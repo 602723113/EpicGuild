@@ -6,6 +6,7 @@ import cc.zoyn.epicguild.dao.DatabaseManagerImpl;
 import cc.zoyn.epicguild.dto.Apply;
 import cc.zoyn.epicguild.dto.DataStorageType;
 import cc.zoyn.epicguild.dto.Guild;
+import cc.zoyn.epicguild.hook.PlaceHolderAPIHook;
 import cc.zoyn.epicguild.manager.ConfigManager;
 import cc.zoyn.epicguild.manager.GuildManagerImpl;
 import lombok.Getter;
@@ -65,6 +66,11 @@ public class EpicGuild extends JavaPlugin {
 
         // loading guilds
         GuildManagerImpl.getInstance().loadGuilds();
+
+        // add PlaceholderAPI support
+        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            new PlaceHolderAPIHook().hook();
+        }
     }
 
     /**
