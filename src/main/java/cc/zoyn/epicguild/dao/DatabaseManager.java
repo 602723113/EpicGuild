@@ -15,6 +15,8 @@ public interface DatabaseManager {
 
     Connection getConnection();
 
-    boolean isClose();
+    boolean connectionIsClose();
+
+    void closeConnection();
 
 }

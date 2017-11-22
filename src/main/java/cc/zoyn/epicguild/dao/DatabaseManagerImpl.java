@@ -33,6 +33,7 @@ public class DatabaseManagerImpl implements DatabaseManager {
         this.tablePrefix = tablePrefix;
     }
 
+    @Override
     public void initialize() {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:mysql://" + this.host + ":" + String.valueOf(this.port) + "/" + this.database + "?autoReconnect=true&serverTimezone=" + TimeZone.getDefault().getID());
@@ -52,6 +53,7 @@ public class DatabaseManagerImpl implements DatabaseManager {
         Bukkit.getLogger().info("initialize database successfully!");
     }
 
+    @Override
     public Connection getConnection() {
         try {
             return this.dataSource.getConnection();
@@ -59,6 +61,16 @@ public class DatabaseManagerImpl implements DatabaseManager {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public boolean connectionIsClose() {
+        return this.dataSource.isClosed();
+    }
+
+    @Override
+    public void closeConnection() {
+        dataSource.close();
     }
 
     public String getCreateTableSQL() {
@@ -72,9 +84,5 @@ public class DatabaseManagerImpl implements DatabaseManager {
                 .append("money DOUBLE NOT NULL,")
                 .append("create_time DATETIME NOT NULL);");
         return builder.toString();
-    }
-
-    public boolean isClose() {
-        return this.dataSource.isClosed();
     }
 }
