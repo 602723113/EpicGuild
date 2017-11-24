@@ -3,6 +3,7 @@ package cc.zoyn.epicguild.dao;
 import cc.zoyn.epicguild.dto.Guild;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Zoyn
@@ -10,18 +11,16 @@ import java.util.List;
  */
 public interface EpicGuildDao {
 
-    Guild getGuild(String guildName);
+    Optional<Guild> getGuild(String guildName);
 
     List<Guild> listGuild();
 
-    void insertGuild(Guild guild);
+    boolean insertGuild(Guild guild);
 
-    void saveGuild(Guild guild);
+    boolean deleteGuild(String guildName);
 
-    void deleteGuild(String guildName);
+    int countGuild();
 
-    int countGuild(String playerName);
-
-    void updateGuild(Guild guild);
+    boolean updateGuild(Guild guild);
 
 }

@@ -3,6 +3,7 @@ package cc.zoyn.epicguild;
 import cc.zoyn.epicguild.command.CommandManagerImpl;
 import cc.zoyn.epicguild.dao.DatabaseManager;
 import cc.zoyn.epicguild.dao.DatabaseManagerImpl;
+import cc.zoyn.epicguild.dao.EpicGuildDaoImpl;
 import cc.zoyn.epicguild.dto.Apply;
 import cc.zoyn.epicguild.dto.DataStorageType;
 import cc.zoyn.epicguild.dto.Guild;
@@ -61,6 +62,8 @@ public class EpicGuild extends JavaPlugin {
 
             databaseManager = new DatabaseManagerImpl(host, port, user, password, database, tablePrefix);
             databaseManager.initialize();
+
+            EpicGuildDaoImpl.getInstance().countGuild();
         }
 
 
