@@ -19,6 +19,4 @@ public interface DatabaseManager {
 
     void closeConnection();
 
-    String getTablePrefix();
-
 }

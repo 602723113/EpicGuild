@@ -11,7 +11,11 @@ import java.util.Optional;
  */
 public interface EpicGuildDao {
 
-    Optional<Guild> getGuild(String guildName);
+    Optional<Guild> getGuildById(int id);
+
+    Optional<Guild> getGuildByGuildName(String guildName);
+
+    Optional<Guild> getGuildByOwnerName(String ownerName);
 
     List<Guild> listGuild();
 
@@ -22,5 +26,13 @@ public interface EpicGuildDao {
     int countGuild();
 
     boolean updateGuild(Guild guild);
+
+    boolean updateOwnerNameByGuildName(String guildName, String ownerName);
+
+    boolean updateLevelByGuildName(String guildName, int level);
+
+    boolean updateMaxPeopleByGuildName(String guildName, int maxPeople);
+
+    boolean updateMoneyByGuildName(String guildName, double money);
 
 }

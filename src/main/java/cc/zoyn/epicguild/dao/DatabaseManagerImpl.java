@@ -21,7 +21,6 @@ public class DatabaseManagerImpl implements DatabaseManager {
     private String userName = "root";
     private String password = "";
     private String database = null;
-    private String tablePrefix = "eg_";
     private HikariDataSource dataSource = null;
 
     public DatabaseManagerImpl(String host, int port, String userName, String password, String database, String tablePrefix) {
@@ -30,7 +29,6 @@ public class DatabaseManagerImpl implements DatabaseManager {
         this.userName = userName;
         this.password = password;
         this.database = database;
-        this.tablePrefix = tablePrefix;
     }
 
     @Override
@@ -74,10 +72,10 @@ public class DatabaseManagerImpl implements DatabaseManager {
     }
 
     private String getCreateTableSQL() {
-        return "CREATE TABLE IF NOT EXISTS " + this.tablePrefix +
-                "guilds (id INT AUTO_INCREMENT PRIMARY KEY," +
-                "owner_name TEXT NOT NULL," +
-                "guild_name TEXT NOT NULL," +
+        return "CREATE TABLE IF NOT EXISTS eg_guilds " +
+                "(id INT AUTO_INCREMENT PRIMARY KEY," +
+                "owner_name CHAR(32) NOT NULL," +
+                "guild_name CHAR(64) NOT NULL," +
                 "description TEXT NOT NULL," +
                 "level INT NOT NULL," +
                 "max_player INT NOT NULL," +
