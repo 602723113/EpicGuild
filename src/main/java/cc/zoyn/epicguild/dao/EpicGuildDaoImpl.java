@@ -34,7 +34,7 @@ public class EpicGuildDaoImpl implements EpicGuildDao {
         String sql = "SELECT FROM " + tablePrefix + "guilds WHERE guildName = '?' LIMIT 1";
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        Optional<Guild> optional = null;
+        Optional<Guild> optional = Optional.empty();
 
         try {
             preparedStatement = databaseManager.getConnection().prepareStatement(sql);
