@@ -45,7 +45,7 @@ public class ConfigManager {
      * @param key          键名
      * @param defaultValue 默认值
      * @param translate    是否转换颜色字符代码
-     * @return {@link List<String>}
+     * @return {@link List}
      */
     public static List<String> getStringListByDefault(String key, List<String> defaultValue, boolean translate) {
         if (config.contains(key) && config.isList(key) && !config.getList(key).isEmpty()) {
