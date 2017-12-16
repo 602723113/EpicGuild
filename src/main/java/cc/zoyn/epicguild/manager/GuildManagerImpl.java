@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Zoyn
@@ -84,13 +85,12 @@ public class GuildManagerImpl implements GuildManager {
         if (dataFile == null) {
             Bukkit.getLogger().warning("GuildDataFolder is missing!");
             return guildList;
-
         }
 
         FileConfiguration fileConfiguration;
         Guild guild;
 
-        for (File file : dataFile.listFiles()) {
+        for (File file : Objects.requireNonNull(dataFile.listFiles())) {
             fileConfiguration = ConfigurationUtils.loadYml(file);
             if (fileConfiguration.contains("Guild")) {
                 guild = (Guild) fileConfiguration.get("Guild");
@@ -102,6 +102,14 @@ public class GuildManagerImpl implements GuildManager {
 
     @Override
     public void saveGuilds() {
-
+        if (!guildList.isEmpty()) {
+            // 遍历list储存数据
+            guildList.forEach(guild -> {
+                File file = new File(EpicGuild.getInstance().getGuildDataFile(), guild.getName() + ".yml");
+                FileConfiguration fileConfiguration = ConfigurationUtils.loadYml(file);
+                fileConfiguration.set("Guild", guild);
+                ConfigurationUtils.saveYml(fileConfiguration, file);
+            });
+        }
     }
 }

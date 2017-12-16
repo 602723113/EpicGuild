@@ -1,5 +1,7 @@
 package cc.zoyn.epicguild.api;
 
+import cc.zoyn.epicguild.EpicGuild;
+import cc.zoyn.epicguild.dao.DatabaseManager;
 import cc.zoyn.epicguild.manager.GuildManager;
 import cc.zoyn.epicguild.manager.GuildManagerImpl;
 import cc.zoyn.epicguild.util.ActionBarUtils;
@@ -11,6 +13,10 @@ import org.bukkit.entity.Player;
  * @since 2017-11-13
  */
 public class EpicGuildAPI {
+
+    public static DatabaseManager getDatabaseManager() {
+        return EpicGuild.getInstance().getDatabaseManager();
+    }
 
     public static GuildManager getGuildManager() {
         return GuildManagerImpl.getInstance();

@@ -9,13 +9,14 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 
 /**
- * 配置文件工具类
+ * Easy to use yml
  *
  * @author Zoyn
  * @since 2017-11-19
  */
-public class ConfigurationUtils {
+public final class ConfigurationUtils {
 
+    private ConfigurationUtils() {}
 
     /**
      * 用路径读取Yml

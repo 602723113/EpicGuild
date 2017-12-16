@@ -3,7 +3,7 @@ package cc.zoyn.epicguild.util;
 import org.bukkit.command.CommandSender;
 
 /**
- * 用于表示一个子命令
+ * Represent a sub command
  *
  * @author Zoyn
  * @since 2017-11-12

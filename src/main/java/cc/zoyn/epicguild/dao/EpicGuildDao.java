@@ -17,7 +17,7 @@ public interface EpicGuildDao {
 
     Optional<Guild> getGuildByOwnerName(String ownerName);
 
-    List<Guild> listGuild();
+    List<Guild> listGuild(int page, int amount);
 
     boolean insertGuild(Guild guild);
 
@@ -28,10 +28,6 @@ public interface EpicGuildDao {
     boolean updateGuild(Guild guild);
 
     boolean updateOwnerNameByGuildName(String guildName, String ownerName);
-
-    boolean updateLevelByGuildName(String guildName, int level);
-
-    boolean updateMaxPeopleByGuildName(String guildName, int maxPeople);
 
     boolean updateMoneyByGuildName(String guildName, double money);
 

@@ -110,27 +110,19 @@ public final class Guild implements ConfigurationSerializable {
     }
 
     public boolean isOwner(@Nullable String playerName) {
-        Validate.notNull(playerName);
-
-        return this.owner.equalsIgnoreCase(playerName);
+        return this.owner.equalsIgnoreCase(Validate.notNull(playerName));
     }
 
     public boolean isOwner(@Nullable Player player) {
-        Validate.notNull(player);
-
-        return this.owner.equalsIgnoreCase(player.getName());
+        return this.owner.equalsIgnoreCase(Validate.notNull(player).getName());
     }
 
     public boolean isMember(@Nullable String playerName) {
-        Validate.notNull(playerName);
-
-        return this.members.contains(playerName);
+        return this.members.contains(Validate.notNull(playerName));
     }
 
     public boolean isMember(@Nullable Player player) {
-        Validate.notNull(player);
-
-        return this.members.contains(player.getName());
+        return this.members.contains(Validate.notNull(player).getName());
     }
 
     public void removeMember(@Nullable String playerName) {

@@ -2,6 +2,7 @@ package cc.zoyn.epicguild.dao;
 
 import cc.zoyn.epicguild.EpicGuild;
 import cc.zoyn.epicguild.dto.Guild;
+import com.google.common.collect.Lists;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -30,13 +31,39 @@ public class EpicGuildDaoImpl implements EpicGuildDao {
 
     @Override
     public Optional<Guild> getGuildById(int id) {
+        String sql = "SELECT * FROM 'eg_guilds' WHERE 'id' = '?' LIMIT 1";
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
         Optional<Guild> optional = Optional.empty();
+
+        try {
+            preparedStatement = databaseManager.getConnection().prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                optional = Optional.of(
+                        new Guild(
+                                resultSet.getString(2),
+                                resultSet.getString(3),
+                                resultSet.getString(4),
+                                resultSet.getInt(5),
+                                resultSet.getInt(6),
+                                resultSet.getDouble(7)
+                        )
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return optional;
     }
 
     @Override
     public Optional<Guild> getGuildByGuildName(String guildName) {
-        String sql = "SELECT * FROM 'eg_guilds' WHERE 'guildName' = '?' LIMIT 1";
+        String sql = "SELECT * FROM 'eg_guilds' WHERE 'guild_name' = '?' LIMIT 1";
         PreparedStatement preparedStatement;
         ResultSet resultSet;
         Optional<Guild> optional = Optional.empty();
@@ -68,13 +95,47 @@ public class EpicGuildDaoImpl implements EpicGuildDao {
 
     @Override
     public Optional<Guild> getGuildByOwnerName(String ownerName) {
+        String sql = "SELECT * FROM 'eg_guilds' WHERE 'owner_name' = '?' LIMIT 1";
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
         Optional<Guild> optional = Optional.empty();
+
+        try {
+            preparedStatement = databaseManager.getConnection().prepareStatement(sql);
+            preparedStatement.setString(1, ownerName);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                optional = Optional.of(
+                        new Guild(
+                                resultSet.getString(2),
+                                resultSet.getString(3),
+                                resultSet.getString(4),
+                                resultSet.getInt(5),
+                                resultSet.getInt(6),
+                                resultSet.getDouble(7)
+                        )
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return optional;
     }
 
     @Override
-    public List<Guild> listGuild() {
-        return null;
+    public List<Guild> listGuild(int page, int amount) {
+        List<Guild> guilds = Lists.newArrayList();
+
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        page = (page - 1) * amount;
+
+        String sql = "SELECT * FROM 'eg_guilds' ORDER BY ID LIMIT '?', '?'";
+        return guilds;
     }
 
     @Override
@@ -178,16 +239,6 @@ public class EpicGuildDaoImpl implements EpicGuildDao {
 
     @Override
     public boolean updateOwnerNameByGuildName(String guildName, String ownerName) {
-        return false;
-    }
-
-    @Override
-    public boolean updateLevelByGuildName(String guildName, int level) {
-        return false;
-    }
-
-    @Override
-    public boolean updateMaxPeopleByGuildName(String guildName, int maxPeople) {
         return false;
     }
 

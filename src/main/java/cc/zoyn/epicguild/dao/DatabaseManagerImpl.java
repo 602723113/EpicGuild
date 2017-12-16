@@ -44,7 +44,8 @@ public class DatabaseManagerImpl implements DatabaseManager {
         this.dataSource = new HikariDataSource(config);
 
         try {
-            getConnection().prepareStatement(getCreateTableSQL()).execute();
+            getConnection().prepareStatement(getCreateGuildTableSQL()).execute();
+            getConnection().prepareStatement(getCreateMemberTableSQL()).execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -71,7 +72,7 @@ public class DatabaseManagerImpl implements DatabaseManager {
         dataSource.close();
     }
 
-    private String getCreateTableSQL() {
+    private String getCreateGuildTableSQL() {
         return "CREATE TABLE IF NOT EXISTS eg_guilds " +
                 "(id INT AUTO_INCREMENT PRIMARY KEY," +
                 "owner_name CHAR(32) NOT NULL," +
@@ -81,5 +82,13 @@ public class DatabaseManagerImpl implements DatabaseManager {
                 "max_player INT NOT NULL," +
                 "money DOUBLE NOT NULL," +
                 "create_time LONG NOT NULL);";
+    }
+
+    private String getCreateMemberTableSQL() {
+        return "CREATE TABLE IF NOT EXISTS eg_members " +
+                "(id INT AUTO_INCREMENT PRIMARY KEY," +
+                "player_name CHAR(32) NOT NULL," +
+                "guild_name CHAR(64) NOT NULL," +
+                "join_time LONG NOT NULL);";
     }
 }

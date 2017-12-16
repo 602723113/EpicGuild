@@ -3,7 +3,7 @@ package cc.zoyn.epicguild.tellraw;
 /**
  * Json构建
  *
- * @author May_Speed
+ * @author Zoyn
  */
 public class JsonBuilderUtils {
 
