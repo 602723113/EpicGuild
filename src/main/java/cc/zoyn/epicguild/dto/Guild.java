@@ -147,6 +147,7 @@ public final class Guild implements ConfigurationSerializable {
         if (!isOwner(player.getName())) {
             if (this.members.contains(player.getName())) {
                 this.members.remove(player.getName());
+                player.sendMessage(ConfigManager.getStringByDefault("CommandMessage.LeaveSuccess", "&6[&eEpicGuild&6] &a退出公会成功!", true));
             }
         } else {
             player.sendMessage(ConfigManager.getStringByDefault("CommandMessage.OwnerCantQuitGuild", "&6[&eEpicGuild6] &c会主不能退出公会", true));

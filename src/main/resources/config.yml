@@ -1,6 +1,8 @@
 # ##################
 # #####数据库设置#####
 # ##################
+#
+# 注: 现在还无法进行数据库储存!!!!!!
 DatabaseOptions:
   host: localhost
   port: 3306
@@ -12,6 +14,9 @@ DatabaseOptions:
 # ###史诗公会综合设置###
 # ###################
 EpicGuildOptions:
+  # 数据储存方式
+  # 可选: mysql, yaml
+  # 注: 现在无法进行数据库操作!!!!!!
   DataStorageType: yaml
   # 公会最大等级
   HighestGuildLevel: 3
@@ -22,18 +27,22 @@ EpicGuildOptions:
     3: 20
   # 公会名字
   # 公会名字需要满足下方的正则表达式
-  NamePattern: "[]"
+  NamePattern: "[a-zA-Z0-9\u4e00-\u9fa5]+"
   # 公会创建部分
   Create:
     NeedItem: false
     NeedMoney: true
     Item: "公会创建令"
     Money: 100
+# ###################
+# #####指令提示设置####
+# ###################
 CommandMessage:
   NotAPlayer: "&6[&eEpicGuild&6] &c你必须是一名玩家!"
   CommandLengthWrong: "&6[&eEpicGuild&6] &c指令用法不正确! 请输入 &e/guild help &c查看帮助."
   NoPermission: "&6[&eEpicGuild&6] &c指令权限不足!"
   MissingGuild: "&6[&eEpicGuild&6] &c公会不存在!"
+  CannotMatchRegex: "&6[&eEpicGuild&6] &c该公会名字无法使用!"
   Help:
     - "&e====== &6[&eEpicGuild &l| &e史诗公会&6] &e======"
     - "&b/guild create [名字] &7创建一个公会"
@@ -42,7 +51,7 @@ CommandMessage:
     - "&b/guild join [公会名] 加入该公会"
     - "&b/guild leave &7离开当前公会"
     - "&b/guild reload &7重载插件"
-  CreateSuccess: "&6[&eEpicGuild&6] &a成功创建公会&f&l[ &6%guild_name% &f&l]"
+  CreateSuccess: "&6[&eEpicGuild&6] &a成功创建公会! &f&l[ &6%epicguild_guild_name% &f&l]"
   LeaveSuccess: "&6[&eEpicGuild&6] &a退出公会成功!"
   PlayerDontHaveGuild: "&6[&eEpicGuild&6] &c你没有公会!"
   UnknownCommand: "&6[&eEpicGuild&6] &c未知命令!"

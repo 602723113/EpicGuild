@@ -97,6 +97,8 @@ public class GuildManagerImpl implements GuildManager {
                 guildList.add(guild);
             }
         }
+
+        EpicGuild.getInstance().getLogger().info("Load guilds successfully");
         return guildList;
     }
 
@@ -104,12 +106,21 @@ public class GuildManagerImpl implements GuildManager {
     public void saveGuilds() {
         if (!guildList.isEmpty()) {
             // 遍历list储存数据
-            guildList.forEach(guild -> {
-                File file = new File(EpicGuild.getInstance().getGuildDataFile(), guild.getName() + ".yml");
-                FileConfiguration fileConfiguration = ConfigurationUtils.loadYml(file);
-                fileConfiguration.set("Guild", guild);
-                ConfigurationUtils.saveYml(fileConfiguration, file);
-            });
+            guildList.forEach(this::saveGuild);
         }
+    }
+
+    /**
+     * 储存单个Guild对象
+     *
+     * @param guild 公会对象
+     */
+    public void saveGuild(Guild guild) {
+        Validate.notNull(guild);
+
+        File file = new File(EpicGuild.getInstance().getGuildDataFile(), guild.getName() + ".yml");
+        FileConfiguration fileConfiguration = ConfigurationUtils.loadYml(file);
+        fileConfiguration.set("Guild", guild);
+        ConfigurationUtils.saveYml(fileConfiguration, file);
     }
 }

@@ -1,6 +1,8 @@
 package cc.zoyn.epicguild.dto;
 
 /**
+ * 储存类型枚举
+ *
  * @author Zoyn
  * @since 2017-11-19
  */

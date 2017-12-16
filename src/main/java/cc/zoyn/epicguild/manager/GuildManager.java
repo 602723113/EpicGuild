@@ -27,4 +27,6 @@ public interface GuildManager {
 
     void saveGuilds();
 
+    void saveGuild(Guild guild);
+
 }

@@ -1,12 +1,16 @@
 package cc.zoyn.epicguild.hook;
 
 import cc.zoyn.epicguild.EpicGuild;
+import cc.zoyn.epicguild.api.EpicGuildAPI;
 import cc.zoyn.epicguild.dto.Guild;
-import cc.zoyn.epicguild.manager.GuildManagerImpl;
 import me.clip.placeholderapi.external.EZPlaceholderHook;
 import org.bukkit.entity.Player;
 
+import java.text.SimpleDateFormat;
+
 /**
+ * PlaceholderAPI 绑定
+ *
  * @author Zoyn
  * @since 2017-11-22
  */
@@ -22,7 +26,7 @@ public class PlaceHolderAPIHook extends EZPlaceholderHook {
             return "";
         }
 
-        Guild guild = GuildManagerImpl.getInstance().getGuildByPlayer(player);
+        Guild guild = EpicGuildAPI.getGuildManager().getGuildByPlayer(player);
         if (identifier.equalsIgnoreCase("guild_name")) {
             if (guild == null) {
                 return "";
@@ -31,6 +35,13 @@ public class PlaceHolderAPIHook extends EZPlaceholderHook {
             }
         } else if (identifier.equalsIgnoreCase("guild_level")) {
             return guild == null ? "0" : String.valueOf(guild.getLevel());
+        } else if (identifier.equalsIgnoreCase("guild_members")) {
+            return guild == null ? "0" : String.valueOf(guild.getMembers().size());
+        } else if (identifier.equalsIgnoreCase("guild_owner")) {
+            return guild == null ? "null" : String.valueOf(guild.getOwner());
+        } else if (identifier.equalsIgnoreCase("guild_createtime")) {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            return guild == null ? "null" : String.valueOf(simpleDateFormat.format(guild.getCreateTime()));
         }
 
         return "";

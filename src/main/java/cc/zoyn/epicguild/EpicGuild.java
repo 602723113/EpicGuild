@@ -77,7 +77,7 @@ public class EpicGuild extends JavaPlugin {
         }
 
         saveDataRunnable = new SaveDataRunnable();
-        saveDataRunnable.runTaskTimerAsynchronously(this, 20L, 20 * 60 * 20L);
+        saveDataRunnable.runTaskTimerAsynchronously(this, 20L, 10 * 60 * 20L);
     }
 
     @Override

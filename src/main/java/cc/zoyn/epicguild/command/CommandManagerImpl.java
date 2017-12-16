@@ -6,7 +6,6 @@ import cc.zoyn.epicguild.util.SubCommand;
 import com.google.common.collect.Maps;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 import java.util.Collections;
@@ -31,6 +30,7 @@ public class CommandManagerImpl implements CommandManager {
         registerCommand("reload", new ReloadCommand());
         registerCommand("send", new SendCommand());
         registerCommand("join", new JoinCommand());
+        registerCommand("leave", new LeaveCommand());
     }
 
     @Override
